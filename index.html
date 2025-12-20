@@ -210,10 +210,10 @@
             position: relative;
         }
 
-        /* Hero Section - CORREÇÃO: Conteúdo visível */
+        /* Hero Section */
         .hero {
             height: 100vh;
-            min-height: 700px; /* Altura mínima para evitar corte */
+            min-height: 700px;
             position: relative;
             display: flex;
             align-items: center;
@@ -251,16 +251,16 @@
             z-index: -2;
         }
 
-        /* Hero Content - CORREÇÃO: Centralizado e visível */
+        /* Hero Content */
         .hero-content {
             position: relative;
             text-align: center;
-            z-index: 10; /* Z-index alto para ficar acima de tudo */
+            z-index: 10;
             width: 100%;
             max-width: 900px;
             padding: 2rem;
             margin: 0 auto;
-            opacity: 1; /* Já visível */
+            opacity: 1;
             animation: heroContentReveal 1.2s ease-out forwards;
         }
 
@@ -275,7 +275,6 @@
             }
         }
 
-        /* Subtítulo no TOPO - CORREÇÃO: Já visível */
         .hero-subtitle {
             font-size: 1.5rem;
             color: var(--gray-lighter);
@@ -292,7 +291,6 @@
             }
         }
 
-        /* Main Title - LETRAS MAIORES e VISÍVEIS */
         .main-title-container {
             margin-bottom: 3rem;
             position: relative;
@@ -301,10 +299,10 @@
         }
 
         .main-title {
-            font-size: 5rem;
+            font-size: 7rem;
             color: var(--white);
             text-transform: uppercase;
-            letter-spacing: 0.3rem;
+            letter-spacing: 0.4rem;
             margin: 0;
             position: relative;
             text-shadow: 
@@ -312,7 +310,7 @@
                 0 0 20px rgba(255, 255, 255, 0.2),
                 0 0 30px rgba(255, 255, 255, 0.1);
             filter: brightness(1.2);
-            opacity: 1; /* Já visível */
+            opacity: 1;
         }
 
         @keyframes titleAppear {
@@ -385,7 +383,7 @@
             }
         }
 
-        /* Badges - CORREÇÃO: Visíveis */
+        /* Badges */
         .hero-badges {
             display: flex;
             justify-content: center;
@@ -416,7 +414,7 @@
         }
 
         .badge:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
             border-color: rgba(212, 212, 212, 0.3);
             box-shadow: var(--glow);
         }
@@ -425,7 +423,7 @@
             color: var(--gray-light);
         }
 
-        /* CTA Buttons - CORREÇÃO: Visíveis */
+        /* CTA Buttons */
         .cta-buttons {
             display: flex;
             gap: 1.5rem;
@@ -854,19 +852,21 @@
             transform: scale(1.02);
         }
 
-        /* Gallery Section */
+        /* Gallery Section - MODIFICADA PARA MAIS COMPRIDA */
         .gallery {
             background: rgba(10, 10, 10, 0.7);
             position: relative;
+            padding: 5rem 0;
         }
 
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
-            grid-auto-rows: 180px;
+            grid-auto-rows: 550px; /* MAIS COMPRIDA: 550px em vez de 400px */
         }
 
+        /* Todos os itens agora são verticais e compridos */
         .gallery-item {
             border-radius: var(--radius);
             overflow: hidden;
@@ -876,6 +876,14 @@
             opacity: 0;
             transform: scale(0.8);
             animation: galleryItemAppear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            border: 1px solid rgba(212, 212, 212, 0.1);
+            height: 100%;
+        }
+
+        /* O vídeo também ocupa 1 coluna como as fotos */
+        .gallery-item.video-item {
+            grid-column: span 1;
+            grid-row: span 1;
         }
 
         .gallery-item:nth-child(1) { animation-delay: 0.1s; }
@@ -894,7 +902,7 @@
             }
         }
 
-        .gallery-img {
+        .gallery-img, .gallery-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -902,12 +910,19 @@
             filter: grayscale(30%) contrast(110%);
         }
 
+        .gallery-video {
+            object-fit: cover;
+        }
+
         .gallery-item:hover {
             transform: scale(1.05);
             z-index: 10;
+            border-color: rgba(212, 212, 212, 0.3);
+            box-shadow: var(--glow-strong);
         }
 
-        .gallery-item:hover .gallery-img {
+        .gallery-item:hover .gallery-img,
+        .gallery-item:hover .gallery-video {
             transform: scale(1.1);
             filter: grayscale(0%) contrast(120%);
         }
@@ -928,6 +943,7 @@
 
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
+            background: linear-gradient(45deg, rgba(0,0,0,0.6), transparent);
         }
 
         .gallery-overlay i {
@@ -935,10 +951,29 @@
             font-size: 2rem;
             transform: scale(0);
             transition: var(--transition);
+            background: rgba(0,0,0,0.5);
+            padding: 1rem;
+            border-radius: 50%;
         }
 
         .gallery-item:hover .gallery-overlay i {
             transform: scale(1.2);
+        }
+
+        /* Estilo especial para vídeo */
+        .video-item .gallery-overlay i {
+            background: rgba(220, 53, 69, 0.7);
+        }
+
+        /* Efeitos de brilho ao passar o mouse */
+        .service-card:hover,
+        .about-card:hover,
+        .contact-card:hover,
+        .badge:hover,
+        .btn:hover,
+        .social-link:hover,
+        .gallery-item:hover {
+            box-shadow: var(--glow-strong);
         }
 
         /* Location Section */
@@ -978,6 +1013,7 @@
 
         .map-container:hover {
             transform: translateX(-50px) scale(1.02);
+            box-shadow: var(--glow-strong);
         }
 
         .map-container iframe {
@@ -1163,7 +1199,7 @@
             width: 100%;
         }
 
-        /* Footer - SEM TIKTOK */
+        /* Footer */
         footer {
             background: var(--black);
             padding: 4rem 0 2rem;
@@ -1311,6 +1347,7 @@
             background: rgba(212, 212, 212, 0.1);
             color: var(--white);
             transform: translateY(-3px) scale(1.2);
+            box-shadow: var(--glow);
         }
 
         .copyright {
@@ -1406,6 +1443,7 @@
             background: rgba(212, 212, 212, 0.1);
             color: var(--white);
             transform: translateY(-3px) scale(1.1);
+            box-shadow: var(--glow);
         }
 
         /* Mobile Menu */
@@ -1540,7 +1578,7 @@
             transform: translateX(0) translateY(0) scale(1);
         }
 
-        /* Responsive */
+        /* Responsive para galeria mais comprida */
         @media (max-width: 1024px) {
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -1548,6 +1586,7 @@
             
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: 500px; /* Mais comprida em tablets */
             }
             
             .about-content, .location-content {
@@ -1594,8 +1633,13 @@
                 font-size: 1.2rem;
             }
             
-            .services-grid, .gallery-grid {
+            .services-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 450px; /* Mais comprida em tablets pequenos */
             }
             
             .section-title {
@@ -1625,8 +1669,9 @@
                 display: none;
             }
             
-            .gallery-grid {
-                grid-auto-rows: 200px;
+            .gallery-overlay i {
+                font-size: 1.5rem;
+                padding: 0.8rem;
             }
             
             .hero-badges {
@@ -1642,7 +1687,7 @@
             }
             
             .hero {
-                min-height: 800px; /* Mais altura no mobile */
+                min-height: 800px;
             }
         }
 
@@ -1664,6 +1709,11 @@
                 font-size: 2.2rem;
             }
             
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 400px; /* Mais comprida em celulares */
+            }
+            
             .whatsapp-float {
                 bottom: 1rem;
                 right: 1rem;
@@ -1680,10 +1730,6 @@
                 left: 1rem;
             }
             
-            .gallery-grid {
-                grid-auto-rows: 180px;
-            }
-            
             .hero-subtitle {
                 font-size: 1.1rem;
             }
@@ -1693,7 +1739,7 @@
             }
             
             .hero {
-                min-height: 850px; /* Altura extra no mobile pequeno */
+                min-height: 850px;
             }
         }
     </style>
@@ -1738,23 +1784,20 @@
     
     <div class="menu-overlay" id="menuOverlay"></div>
 
-    <!-- Hero Section - CORRIGIDO: Todo conteúdo visível -->
+    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         
         <div class="hero-content">
-            <!-- 1. Subtítulo "Precisão, estilo..." NO TOPO - AGORA VISÍVEL -->
             <p class="hero-subtitle">Precisão, estilo e elegância em cada corte...</p>
             
-            <!-- 2. Título principal ABAIXO do subtítulo - LETRAS MAIORES E VISÍVEL -->
             <div class="main-title-container">
                 <h1 class="main-title">BARBEARIA ZUNINO</h1>
                 <div class="title-glow">BARBEARIA ZUNINO</div>
                 <div class="title-line"></div>
             </div>
             
-            <!-- 3. Badges ABAIXO do título - AGORA VISÍVEIS -->
             <div class="hero-badges">
                 <div class="badge">
                     <i class="fas fa-star"></i>
@@ -1770,14 +1813,12 @@
                 </div>
             </div>
             
-            <!-- 4. Botões CTA ABAIXO dos badges - AGORA VISÍVEIS -->
             <div class="cta-buttons">
                 <a href="https://sites.appbarber.com.br/agendamento/barbear2wap?utm_source=ig&utm_medium=social&utm_content=link_in_bio" target="_blank" class="btn btn-primary">Agendar Agora</a>
                 <a href="#contact" class="btn btn-secondary">Falar no WhatsApp</a>
             </div>
         </div>
         
-        <!-- Animated Scroll Indicator -->
         <div class="scroll-indicator">
             <div class="scroll-text">Role para explorar</div>
             <div class="scroll-line"></div>
@@ -1899,7 +1940,7 @@
         </section>
     </div>
 
-    <!-- Gallery Section -->
+    <!-- Gallery Section - MODIFICADA PARA MAIS COMPRIDA -->
     <div class="section-wrapper">
         <section class="gallery section-padding" id="gallery">
             <div class="container">
@@ -1907,57 +1948,68 @@
                 <p class="section-subtitle animate-on-scroll animate-up">Resultados que falam por si só</p>
                 
                 <div class="gallery-grid">
+                    <!-- Foto 1 - Mais comprida -->
                     <div class="gallery-item animate-on-scroll animate-scale">
-                        <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Corte degradê" class="gallery-img">
+                        <img src="zunino1.jpeg" alt="Corte de cabelo moderno" class="gallery-img">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
                     
+                    <!-- Foto 2 -->
                     <div class="gallery-item animate-on-scroll animate-scale">
-                        <img src="https://images.unsplash.com/photo-1562788869-4ed32648eb72?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Barba alinhada" class="gallery-img">
+                        <img src="zunino2.jpeg" alt="Estilo degradê" class="gallery-img">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
                     
+                    <!-- Foto 3 -->
                     <div class="gallery-item animate-on-scroll animate-scale">
-                        <img src="https://images.unsplash.com/photo-1621607508886-03c5b4aba8e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Corte moderno" class="gallery-img">
+                        <img src="zunino3.jpeg" alt="Barba feita com precisão" class="gallery-img">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
                     
+                    <!-- VÍDEO - Também comprido -->
+                    <div class="gallery-item video-item animate-on-scroll animate-scale">
+                        <video class="gallery-video" controls preload="metadata">
+                            <source src="zunino4video.mp4" type="video/mp4">
+                            Seu navegador não suporta vídeos HTML5.
+                        </video>
+                        <div class="gallery-overlay">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Foto 5 -->
                     <div class="gallery-item animate-on-scroll animate-scale">
-                        <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Navalhado" class="gallery-img">
+                        <img src="zunino5.jpeg" alt="Ambiente da barbearia" class="gallery-img">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
                     
+                    <!-- Foto 6 -->
                     <div class="gallery-item animate-on-scroll animate-scale">
-                        <img src="https://images.unsplash.com/photo-1593101236325-dcbb9e6c5b6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Pompadour" class="gallery-img">
+                        <img src="zunino6.jpeg" alt="Detalhe do corte" class="gallery-img">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
                     
+                    <!-- Foto 7 -->
                     <div class="gallery-item animate-on-scroll animate-scale">
-                        <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ambiente barbearia" class="gallery-img">
+                        <img src="zunino7.jpeg" alt="Resultado final" class="gallery-img">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
                     </div>
                     
+                    <!-- Foto 8 -->
                     <div class="gallery-item animate-on-scroll animate-scale">
-                        <img src="https://images.unsplash.com/photo-1631729371254-42c2892f0e6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Before/After" class="gallery-img">
-                        <div class="gallery-overlay">
-                            <i class="fas fa-search-plus"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item animate-on-scroll animate-scale">
-                        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Finalização" class="gallery-img">
+                        <img src="zunino8.jpeg" alt="Cliente satisfeito" class="gallery-img">
                         <div class="gallery-overlay">
                             <i class="fas fa-search-plus"></i>
                         </div>
@@ -2050,7 +2102,7 @@
         </section>
     </div>
 
-    <!-- Footer - SEM TIKTOK -->
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
@@ -2106,14 +2158,14 @@
         // Create animated particles
         function createParticles() {
             const bg = document.getElementById('animatedBg');
-            const particleCount = 30;
+            const particleCount = 50;
             
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.classList.add('bg-particle');
                 
                 // Random size
-                const size = Math.random() * 200 + 50;
+                const size = Math.random() * 300 + 50;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 
@@ -2122,10 +2174,13 @@
                 particle.style.top = `${Math.random() * 100}%`;
                 
                 // Random animation
-                const duration = Math.random() * 30 + 20;
-                const delay = Math.random() * 5;
+                const duration = Math.random() * 40 + 20;
+                const delay = Math.random() * 10;
                 particle.style.animationDuration = `${duration}s`;
                 particle.style.animationDelay = `${delay}s`;
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.2 + 0.05;
                 
                 bg.appendChild(particle);
             }
@@ -2212,19 +2267,46 @@
             });
         });
 
-        // Image gallery modal (conceitual)
+        // Galeria interativa
         const galleryItems = document.querySelectorAll('.gallery-item');
+        
         galleryItems.forEach(item => {
-            item.addEventListener('click', function() {
-                // Add click animation
-                this.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 200);
+            item.addEventListener('click', function(e) {
+                e.stopPropagation();
                 
-                const imgSrc = this.querySelector('img').src;
-                alert('Galeria interativa - Em um site real, esta imagem abriria em um lightbox. URL da imagem: ' + imgSrc);
+                // Verifica se é vídeo
+                const video = this.querySelector('video');
+                
+                if (video) {
+                    // Toggle play/pause do vídeo
+                    if (video.paused) {
+                        video.play();
+                        this.querySelector('.gallery-overlay i').className = 'fas fa-pause';
+                    } else {
+                        video.pause();
+                        this.querySelector('.gallery-overlay i').className = 'fas fa-play';
+                    }
+                }
             });
+        });
+
+        // Pausar vídeos ao sair do viewport
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const video = entry.target.querySelector('video');
+                if (video && !entry.isIntersecting) {
+                    video.pause();
+                    const playIcon = entry.target.querySelector('.gallery-overlay i');
+                    if (playIcon) {
+                        playIcon.className = 'fas fa-play';
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observar itens de vídeo
+        document.querySelectorAll('.gallery-item.video-item').forEach(item => {
+            observer.observe(item);
         });
 
         // Initialize particles
@@ -2248,6 +2330,17 @@
                 typeWriter();
             }, 300);
         }
+
+        // Efeito de brilho adicional ao passar o mouse
+        document.querySelectorAll('.service-card, .about-card, .contact-card, .badge, .btn, .social-link, .gallery-item, .detail').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.3s ease';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transition = 'all 0.3s ease';
+            });
+        });
     </script>
 </body>
 </html>
